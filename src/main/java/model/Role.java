@@ -17,4 +17,7 @@ public class Role {
     @Column( name = "libelle")
     private String libelle;
 
+    @OneToOne ( mappedBy = "role")
+    private User user;
+
 }

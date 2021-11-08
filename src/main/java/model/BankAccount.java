@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 @Entity
 @DynamicUpdate
+@Table ( name = "bank_account")
 public class BankAccount {
 
     @Id
@@ -26,4 +27,8 @@ public class BankAccount {
             orphanRemoval = true
     )
     ArrayList<AccountTransaction> accountTransactions = new ArrayList<>();
+
+    @OneToOne ( cascade = CascadeType.ALL)
+    @JoinColumn ( name = "user_id", referencedColumnName = "user_id")
+    private User user;
 }

@@ -26,4 +26,13 @@ public class User {
     @Column ( name = "password")
     private String password;
 
+    @OneToOne ( cascade = CascadeType.ALL)
+    @JoinColumn ( name = "role_id", referencedColumnName = "role_id")
+    private Role role;
+
+    @OneToOne (mappedBy = "user")
+    private BankAccount bankAccount;
+
+    @OneToOne ( mappedBy = "user")
+    private PmbAccount pmbAccount;
 }

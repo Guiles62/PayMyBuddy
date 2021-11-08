@@ -31,4 +31,8 @@ public class PmbAccount {
     )
     ArrayList<Transaction> transactions = new ArrayList<>();
 
+    @OneToOne ( cascade = CascadeType.ALL)
+    @JoinColumn ( name = "user_id", referencedColumnName = "user_id")
+    private User user;
+
 }
