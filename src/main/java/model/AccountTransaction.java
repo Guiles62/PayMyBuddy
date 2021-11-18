@@ -30,5 +30,42 @@ public class AccountTransaction {
     @JoinColumn ( name = "bank_account_id")
     private BankAccount bankAccount;
 
+    public AccountTransaction(int transactionAccountId, LocalDate transactionAccountDate, int amount, BankAccount bankAccount) {
+        this.transactionAccountId = transactionAccountId;
+        this.transactionAccountDate = transactionAccountDate;
+        this.amount = amount;
+        this.bankAccount = bankAccount;
+    }
 
+    public int getTransactionAccountId() {
+        return transactionAccountId;
+    }
+
+    public void setTransactionAccountId(int transactionAccountId) {
+        this.transactionAccountId = transactionAccountId;
+    }
+
+    public LocalDate getTransactionAccountDate() {
+        return transactionAccountDate;
+    }
+
+    public void setTransactionAccountDate(LocalDate transactionAccountDate) {
+        this.transactionAccountDate = transactionAccountDate;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
 }

@@ -31,4 +31,52 @@ public class BankAccount {
     @OneToOne ( cascade = CascadeType.ALL)
     @JoinColumn ( name = "user_id", referencedColumnName = "user_id")
     private User user;
+
+    public BankAccount(int bankAccountId, int userId, String rib, ArrayList<AccountTransaction> accountTransactions, User user) {
+        this.bankAccountId = bankAccountId;
+        this.userId = userId;
+        this.rib = rib;
+        this.accountTransactions = accountTransactions;
+        this.user = user;
+    }
+
+    public int getBankAccountId() {
+        return bankAccountId;
+    }
+
+    public void setBankAccountId(int bankAccountId) {
+        this.bankAccountId = bankAccountId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getRib() {
+        return rib;
+    }
+
+    public void setRib(String rib) {
+        this.rib = rib;
+    }
+
+    public ArrayList<AccountTransaction> getAccountTransactions() {
+        return accountTransactions;
+    }
+
+    public void setAccountTransactions(ArrayList<AccountTransaction> accountTransactions) {
+        this.accountTransactions = accountTransactions;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
