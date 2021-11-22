@@ -46,7 +46,7 @@ public class User {
     @JoinTable(
             name = "user_friends",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            inverseJoinColumns = @JoinColumn(name = "user_friends_id")
     )
     private List<User> userFriends = new ArrayList<>();
 

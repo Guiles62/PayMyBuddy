@@ -23,27 +23,24 @@ public class UserController {
     }
 
     @PostMapping(value = "friends")
-    public User addUserFriends(@RequestBody String email) {
-        return userService.saveUserByEmail(email);
+    public User saveUserFriends(@RequestBody String email) {
+        return userService.saveByUserFriendsEmail(email);
+    }
+
+    @GetMapping(value = "friends")
+    public List<User> findUserFriends (User user) {
+        return userService.findUserFriends(user);
     }
 
     @GetMapping(value = "user/{email}")
     public Iterable<User> getUserByEmail(@PathVariable String email) {
-        return userService.getUserByEmail(email);
+        return userService.findUserByEmail(email);
     }
 
-    @GetMapping(value = "user/login")
-    public User getUserByEmailAndPassword(@RequestBody String email, @RequestBody String password) {
-        return userService.getUserByEmailAndPassword(email,password);
-    }
     @PostMapping(value = "user/newuser")
     public User addUser ( User user) {
-        return userService.addUser(user);
+        return userService.saveUser(user);
     }
 
-    @DeleteMapping( value = "user")
-    public void deleteUserById (Integer id) {
-        userService.deleteUserById(id);
-    }
 
 }

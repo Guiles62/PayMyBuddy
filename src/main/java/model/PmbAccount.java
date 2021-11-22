@@ -36,10 +36,14 @@ public class PmbAccount {
     private User user;
 
 
-    public PmbAccount() {
-        super();
+    public PmbAccount(int accountNumber, int balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
     }
 
+    public PmbAccount() {
+
+    }
 
     public int getPmbAccountId() {
         return pmbAccountId;

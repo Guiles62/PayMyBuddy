@@ -32,12 +32,12 @@ public class BankAccount {
     @JoinColumn ( name = "user_id", referencedColumnName = "user_id")
     private User user;
 
-    public BankAccount(int bankAccountId, int userId, String rib, ArrayList<AccountTransaction> accountTransactions, User user) {
-        this.bankAccountId = bankAccountId;
-        this.userId = userId;
+    public BankAccount(String rib) {
         this.rib = rib;
-        this.accountTransactions = accountTransactions;
-        this.user = user;
+    }
+
+    public BankAccount() {
+
     }
 
     public int getBankAccountId() {

@@ -20,10 +20,12 @@ public class Role {
     @OneToOne ( mappedBy = "role")
     private User user;
 
-    public Role(int roleId, String libelle, User user) {
-        this.roleId = roleId;
+    public Role(String libelle) {
         this.libelle = libelle;
-        this.user = user;
+    }
+
+    public Role() {
+
     }
 
     public int getRoleId() {

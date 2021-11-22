@@ -15,10 +15,12 @@ CREATE TABLE user (
                 password VARCHAR(100) NOT NULL,
                 PRIMARY KEY (user_id)
 );
+
+
 CREATE TABLE user_friends (
-                user_friends_id INT AUTO_INCREMENT NOT NULL,
                 user_id INT NOT NULL,
-                PRIMARY KEY (user_friends_id)
+                user_id_friends INT NOT NULL,
+                PRIMARY KEY (user_id, user_id_friends)
 );
 
 
@@ -84,6 +86,11 @@ REFERENCES user (user_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
+ALTER TABLE user_friends ADD CONSTRAINT user_user_friends_fk1
+FOREIGN KEY (user_id_friends)
+REFERENCES user (user_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
 ALTER TABLE transaction_account ADD CONSTRAINT compte_bancaire_transaction_account_fk
 FOREIGN KEY (bank_account_id)
