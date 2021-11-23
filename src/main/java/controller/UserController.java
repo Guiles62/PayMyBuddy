@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping(value = "user/newuser")
-    public User addUser ( User user) {
+    public User saveUser ( User user) {
         return userService.saveUser(user);
     }
 
