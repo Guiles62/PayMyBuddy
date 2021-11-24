@@ -3,10 +3,10 @@ package controller;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,4 +43,9 @@ public class UserController {
     }
 
 
+    @GetMapping(value = "/user")
+    public String findUsers(Model model) {
+        model.addAttribute("users", userService.getUsers());
+        return "user";
+    }
 }
