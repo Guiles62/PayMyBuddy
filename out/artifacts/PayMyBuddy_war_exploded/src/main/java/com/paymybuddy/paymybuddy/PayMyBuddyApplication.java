@@ -2,13 +2,14 @@ package com.paymybuddy.paymybuddy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
 @SpringBootApplication
-public class PayMyBuddyApplication {
+public class PayMyBuddyApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PayMyBuddyApplication.class, args);
+
+    public static void main(String[] args) { SpringApplication.run(PayMyBuddyApplication.class, args);
     }
 
 }
