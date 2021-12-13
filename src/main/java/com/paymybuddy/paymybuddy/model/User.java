@@ -1,4 +1,4 @@
-package model;
+package com.paymybuddy.paymybuddy.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @DynamicUpdate
-@Table ( name = "User")
+@Table ( name = "user")
 public class User {
 
     @Id
@@ -46,7 +46,7 @@ public class User {
     @JoinTable(
             name = "user_friends",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_friends_id")
+            inverseJoinColumns = @JoinColumn(name = "user_id_friends")
     )
     private List<User> userFriends = new ArrayList<>();
 

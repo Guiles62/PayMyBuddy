@@ -6,7 +6,9 @@
     <!-- css -->
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="transactions.css">
+
 </head>
+<section id="page">
 <header>
     <section id="entete">
                 <p><em>Pay My Buddy</em></p>
@@ -20,7 +22,7 @@
     </section>
     <p id="pages">Home / Transfert</p>
     <section id="send">
-        <p>Send Money</p>
+        <h5>Send Money</h5>
         <button class="connection" type="submit" style="float: right">Add Connection</button>
     </section>
 
@@ -35,11 +37,11 @@
     </section>
 </header>
 <body>
-<p id="transactions">My Transactions</p>
-<section id="table">
+<h5 id="transactions">My Transactions</h5>
+<div id="table">
 <table>
     <Thead>
-        <tr>
+        <tr class="text-white">
             <th>Connections</th>
             <th>Description</th>
             <th>Amount</th>
@@ -49,13 +51,14 @@
     <tbody>
     <c:forEach items="${transaction}" var="transaction">
         <tr>
-            <td>${transaction.friend}</td>
+            <td>${transaction.userFriend}</td>
             <td>${transaction.description}</td>
             <td>${transaction.amount}</td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-</section>
+</div>
 </body>
+</section>
 </html>

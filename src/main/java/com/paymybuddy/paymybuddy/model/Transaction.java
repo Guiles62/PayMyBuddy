@@ -1,6 +1,6 @@
 package com.paymybuddy.paymybuddy.model;
 
-import com.paymybuddy.paymybuddy.model.PmbAccount;
+
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;

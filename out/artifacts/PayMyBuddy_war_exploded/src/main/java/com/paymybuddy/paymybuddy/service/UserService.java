@@ -1,14 +1,11 @@
 package com.paymybuddy.paymybuddy.service;
 
 
-
 import com.paymybuddy.paymybuddy.model.User;
+import com.paymybuddy.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.paymybuddy.paymybuddy.repository.UserRepository;
 
-
-import java.util.List;
 import java.util.Optional;
 
 

@@ -49,6 +49,7 @@ a {
     margin-top: 50px;
     margin-left: 540px;
     margin-right: 540px;
+
 }
 #pay button {
     margin-left: 10px;
@@ -66,10 +67,20 @@ a {
 #table {
     display: flex;
     justify-content: space-around;
-    background-color: rgb(0,128,0);
+    background-color: rgb(0,200,0);
+    border: black solid;
     margin-left: 540px;
     margin-right: 540px;
 }
+th {
+    width: 870px;
+    padding-left: 100px;
+}
+
+
+
+
+
 
 
 

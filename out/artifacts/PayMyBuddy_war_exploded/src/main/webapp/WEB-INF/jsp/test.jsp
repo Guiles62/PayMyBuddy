@@ -5,7 +5,7 @@
     <title>Pay My Buddy</title>
     <!-- css -->
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profil.css">
 
 </head>
 <header>
