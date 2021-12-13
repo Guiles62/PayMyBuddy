@@ -28,8 +28,14 @@ public class UserService {
     return userRepository.findByEmail(email);
     }
 
-    public User saveUser(User user) {
+    public User saveUser(String name,String email,String password) {
+        User user= new User();
+        user.setFirstname(name);
+        user.setEmail(email);
+        user.setPassword(password);
         return userRepository.save(user);
     }
+
+
 
 }
