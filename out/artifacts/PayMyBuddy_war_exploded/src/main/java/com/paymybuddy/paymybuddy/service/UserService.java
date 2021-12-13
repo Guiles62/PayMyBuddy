@@ -25,12 +25,11 @@ public class UserService {
     }
 
     public Iterable<User> findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    return userRepository.findByEmail(email);
     }
 
     public User saveUser(User user) {
         return userRepository.save(user);
     }
-
 
 }

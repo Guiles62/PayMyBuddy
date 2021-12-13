@@ -49,13 +49,16 @@
     </Thead>
 
     <tbody>
-    <c:forEach items="${transaction}" var="transaction">
-        <tr>
-            <td>${transaction.userFriend}</td>
-            <td>${transaction.description}</td>
-            <td>${transaction.amount}</td>
-        </tr>
-    </c:forEach>
+    <c:if test="${addTransactionSuccess}">
+        <div>Successfully added Transaction: ${saveTransaction.description}</div>
+    </c:if>
+
+    <c:url var="transaction_url" value="/transactions"/>
+    <form:form action="${transaction_url}" method="post" modelAttribute="transaction">
+        <form:label path="connection">Connections: </form:label> <form:input type="text" path="connection"/>
+        <form:label path="description">Description: </form:label> <form:input type="text" path="description"/>
+        <form:label path="amount">Amount: </form:label> <form:input path="amount"/>
+    </form:form>
     </tbody>
 </table>
 </div>
