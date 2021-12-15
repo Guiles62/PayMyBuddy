@@ -27,29 +27,35 @@ public class UserController {
 
 
     @GetMapping(value = "user/{email}")
-    public Iterable<User> getUserByEmail(@PathVariable String email) {
-        return userService.findUserByEmail(email);
+    public String getUserByEmail(@PathVariable String email, Model model) {
+    model.addAttribute("user",userService.findUserByEmail(email));
+    return "transactions";
     }
 
-    @GetMapping( value = "registration")
+    @GetMapping( value = "/registration")
     public String registration (Model model) {
         return "registration";
     }
 
     @PostMapping(value = "/newuser")
-    public User saveUser ( @RequestParam("name") String name,
+    public User saveUser ( @RequestParam("firstname") String firstname,
+                           @RequestParam("lastname") String lastname,
                            @RequestParam("email") String email,
                            @RequestParam("password") String password,
                            Model model) {
-        return userService.saveUser(name, email, password);
+        return userService.saveUser(firstname,lastname, email, password);
     }
 
 
     @GetMapping(value = "/user")
     public String findUsers(Model model) {
         Iterable<User> userList = userService.getUsers();
-        model.addAttribute("user", userList);
+        model.addAttribute("users", userList);
         return "profil";
+    }
+    @PostMapping(value="newfriend")
+    public User addFriend (@RequestParam("email") String email, Model model){
+        return userService.addFriend(email);
     }
 
 }

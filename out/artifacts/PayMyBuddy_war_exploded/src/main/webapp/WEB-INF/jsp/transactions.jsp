@@ -1,5 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Pay My Buddy</title>
@@ -25,16 +26,32 @@
         <h5>Send Money</h5>
         <button class="connection" type="submit" style="float: right">Add Connection</button>
     </section>
-
+<table>
+    <thead>
+    </thead>
+    <tbody>
     <section id="pay">
-    <select name="friend" id="friend">
+        <form method="post" action="/newtransaction">
+    <select name="user" id="user">
         <option selected disabled>Select A Connection</option>
-        <option value="friend 1">friend 1</option>
-        <option value="friend 2">friend 2</option>
+        <option>
+        <c:forEach items="${user}" var="user">
+            <tr class="border border-dark">
+                <td>${user.userFriends}</td>
+                <td>${user.firstname}</td>
+            </tr>
+            </c:forEach>
+
+        </option>
     </select>
-    <input class="quantity" id="quantity" min="0" name="quantity" value="0" type="number">
+    <input class="amount" id="amount" min="0" name="amount" value="0" type="number">
+    <input type="text" placeholder="Description" id="description" name="description">
     <button class="pay" type="submit" style="float: right">Pay</button>
+
+        </form>
     </section>
+    </tbody>
+</table>
 </header>
 <body>
 <h5 id="transactions">My Transactions</h5>

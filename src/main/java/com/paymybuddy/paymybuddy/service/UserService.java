@@ -1,6 +1,7 @@
 package com.paymybuddy.paymybuddy.service;
 
 
+import com.paymybuddy.paymybuddy.model.Role;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,23 @@ public class UserService {
     return userRepository.findByEmail(email);
     }
 
-    public User saveUser(String name,String email,String password) {
+    public User addFriend(String email){
+        User user = new User();
+        Iterable<User> userFriend = findUserByEmail(email);
+        user.getUserFriends().add((User) userFriend);
+        return userRepository.save(user);
+    }
+
+    public User saveUser(String firstname,String lastname,String email,String password) {
+        Role role = new Role();
         User user= new User();
-        user.setFirstname(name);
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
         user.setEmail(email);
         user.setPassword(password);
+        role.setRoleId(2);
+        role.setLibelle("USER");
+        user.setRole(role);
         return userRepository.save(user);
     }
 

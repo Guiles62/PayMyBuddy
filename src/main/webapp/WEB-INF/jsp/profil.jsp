@@ -31,9 +31,9 @@
             </tr>
     </thead>
     <tbody>
-    <c:forEach items="${user}" var="user">
+    <c:forEach items="${users}" var="users">
         <tr>
-            <td>${user.firstname}</td>
+            <td>${users.firstname}</td>
         </tr>
     </c:forEach>
     </tbody>
@@ -46,9 +46,9 @@
         </tr>
     </thead>
     <tbody>
-    <c:forEach items="${user}" var="user">
+    <c:forEach items="${users}" var="users">
         <tr>
-            <td>${user.lastname}</td>
+            <td>${users.lastname}</td>
         </tr>
     </c:forEach>
     </tbody>
@@ -61,9 +61,9 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${user}" var="user">
+    <c:forEach items="${users}" var="users">
         <tr>
-            <td>${user.email}</td>
+            <td>${users.email}</td>
         </tr>
     </c:forEach>
     </tbody>
@@ -76,9 +76,9 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${user}" var="user">
+    <c:forEach items="${users}" var="users">
         <tr>
-            <td>${user.password}</td>
+            <td>${users.password}</td>
         </tr>
     </c:forEach>
     </tbody>
