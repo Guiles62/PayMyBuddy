@@ -19,17 +19,21 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping (value = "user/{id}")
+    @GetMapping (value = "/user/{id}")
     public Optional<User> getUserById (@PathVariable Integer id){
         return userService.getUserById(id);
     }
 
 
 
-    @GetMapping(value = "user/{email}")
-    public String getUserByEmail(@PathVariable String email, Model model) {
-    model.addAttribute("user",userService.findUserByEmail(email));
-    return "transactions";
+    @GetMapping(value = "/newfriend")
+    public String getUserByEmail(Model model) {
+    return "newfriend";
+    }
+
+    @PostMapping(value="/addfriend")
+    public User addFriend (@RequestParam("email") String email, Model model){
+        return userService.addFriend(email);
     }
 
     @GetMapping( value = "/registration")
@@ -52,10 +56,6 @@ public class UserController {
         Iterable<User> userList = userService.getUsers();
         model.addAttribute("users", userList);
         return "profil";
-    }
-    @PostMapping(value="newfriend")
-    public User addFriend (@RequestParam("email") String email, Model model){
-        return userService.addFriend(email);
     }
 
 }

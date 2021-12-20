@@ -1,13 +1,13 @@
 
 CREATE TABLE role (
-                role_id INT NOT NULL,
+                role_id INT AUTO_INCREMENT NOT NULL,
                 libelle VARCHAR(100) NOT NULL,
                 PRIMARY KEY (role_id)
 );
 
 
 CREATE TABLE user (
-                user_id INT NOT NULL,
+                user_id INT AUTO_INCREMENT NOT NULL,
                 role_id INT NOT NULL,
                 lastname VARCHAR(100) NOT NULL,
                 firstname VARCHAR(100) NOT NULL,

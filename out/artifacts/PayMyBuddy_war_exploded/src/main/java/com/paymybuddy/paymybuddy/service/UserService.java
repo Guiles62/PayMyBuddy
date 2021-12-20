@@ -5,8 +5,11 @@ import com.paymybuddy.paymybuddy.model.Role;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -31,20 +34,22 @@ public class UserService {
 
     public User addFriend(String email){
         User user = new User();
+        List<User> friendsList = user.getUserFriends();;
         Iterable<User> userFriend = findUserByEmail(email);
-        user.getUserFriends().add((User) userFriend);
+        userFriend.forEach(friendsList::add);
         return userRepository.save(user);
     }
 
     public User saveUser(String firstname,String lastname,String email,String password) {
         Role role = new Role();
+        role.setRoleId(2);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
         User user= new User();
+        user.setEmail(email);
         user.setFirstname(firstname);
         user.setLastname(lastname);
-        user.setEmail(email);
-        user.setPassword(password);
-        role.setRoleId(2);
-        role.setLibelle("USER");
+        user.setPassword(hashedPassword);
         user.setRole(role);
         return userRepository.save(user);
     }

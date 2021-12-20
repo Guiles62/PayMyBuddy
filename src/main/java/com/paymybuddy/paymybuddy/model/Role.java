@@ -17,9 +17,6 @@ public class Role {
     @Column( name = "libelle")
     private String libelle;
 
-    @OneToOne ( mappedBy = "role")
-    private User user;
-
     public int getRoleId() {
         return roleId;
     }
@@ -36,11 +33,5 @@ public class Role {
         this.libelle = libelle;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

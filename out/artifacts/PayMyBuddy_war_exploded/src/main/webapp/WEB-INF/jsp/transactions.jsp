@@ -14,9 +14,9 @@
     <section id="entete">
                 <p><em>Pay My Buddy</em></p>
         <div id="liens" style="float: right">
-                <a href="/login.jsp">Home</a>
+                <a href="/login">Home</a>
                 <a href="/transfert">Transfert</a>
-                <a href="/profile">Profile</a>
+                <a href="/profil">Profile</a>
                 <a href="/contact">Contact</a>
                 <a href="/logoff">Log off</a></br>
         </div>
@@ -24,7 +24,9 @@
     <p id="pages">Home / Transfert</p>
     <section id="send">
         <h5>Send Money</h5>
-        <button class="connection" type="submit" style="float: right">Add Connection</button>
+        <form action="/newfriend" method="get">
+        <button  class="connection" type="submit" style="float: right" > Add Connection</button>
+        </form>
     </section>
 <table>
     <thead>

@@ -6,7 +6,7 @@
     <title>Pay My Buddy</title>
     <!-- css -->
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="registration.css">
 </head>
 <body>
 

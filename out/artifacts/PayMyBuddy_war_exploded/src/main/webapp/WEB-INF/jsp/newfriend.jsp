@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
@@ -6,7 +5,7 @@
     <title>Pay My Buddy</title>
     <!-- css -->
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="../../../resources/static/registration.css">
+    <link rel="stylesheet" href="newfriend.css">
 </head>
 <body>
 
@@ -14,12 +13,11 @@
     <div class="container">
         <section>
             <p><em>Pay My Buddy</em></p>
-            <form method="post" action="home.jsp"></form>
+            <p><h5>Add a friend</h5></p>
+            <form method="post" action="/addfriend">
             <p><input type="email" style="background-image: url(/email.png);background-position: left; background-repeat: no-repeat" placeholder="Email" id="email" name="email"></p>
-            <p><input type="password" style="background-image: url(/password.png); background-position: left; background-repeat: no-repeat" placeholder="Password" id="password" name="password"></p>
-            <p><input type="checkbox" id="remember" name="Remember me">
-                <label for="remember">Remember me</label></p>
-            <p><button class="login" type="submit">Login</button></p>
+            <p><button class="search" type="submit">add friend</button></p>
+            </form>
         </section>
     </div>
 </div>

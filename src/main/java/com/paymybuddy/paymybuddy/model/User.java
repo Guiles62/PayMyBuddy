@@ -28,8 +28,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    @OneToOne()
+    @JoinColumn ( name = "role_id",
+            referencedColumnName = "role_id")
     private Role role;
 
     @OneToOne(mappedBy = "user")
