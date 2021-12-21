@@ -36,7 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profil/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/login").defaultSuccessUrl("/profil").failureUrl("/login?error=true").permitAll()
                 .and()
                 .httpBasic();
 

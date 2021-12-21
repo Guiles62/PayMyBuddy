@@ -6,7 +6,7 @@
     <title>Pay My Buddy</title>
     <!-- css -->
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="../../../resources/static/registration.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
@@ -14,12 +14,13 @@
     <div class="container">
         <section>
             <p><em>Pay My Buddy</em></p>
-            <form method="post" action="home.jsp"></form>
+            <form method="post" action="home.jsp">
             <p><input type="email" style="background-image: url(/email.png);background-position: left; background-repeat: no-repeat" placeholder="Email" id="email" name="email"></p>
             <p><input type="password" style="background-image: url(/password.png); background-position: left; background-repeat: no-repeat" placeholder="Password" id="password" name="password"></p>
             <p><input type="checkbox" id="remember" name="Remember me">
                 <label for="remember">Remember me</label></p>
             <p><button class="login" type="submit">Login</button></p>
+            </form>
         </section>
     </div>
 </div>

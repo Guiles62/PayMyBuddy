@@ -20,6 +20,7 @@ public class TransactionController {
     public String getTransactions (Model model){
         return "transactions";
     }
+
     @PostMapping(value = "/newtransaction")
     public Transaction addTransaction (@RequestParam("user") User user,
                                        @RequestParam("description") String description,

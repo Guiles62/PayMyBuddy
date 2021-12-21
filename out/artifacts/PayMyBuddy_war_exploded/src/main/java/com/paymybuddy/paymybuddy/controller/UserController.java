@@ -50,12 +50,16 @@ public class UserController {
         return userService.saveUser(firstname,lastname, email, password);
     }
 
-
     @GetMapping(value = "/user")
     public String findUsers(Model model) {
         Iterable<User> userList = userService.getUsers();
         model.addAttribute("users", userList);
         return "profil";
+    }
+
+    @GetMapping(value="login")
+    public String login (Model model) {
+        return "login";
     }
 
 }

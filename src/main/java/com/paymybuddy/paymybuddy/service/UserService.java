@@ -5,6 +5,9 @@ import com.paymybuddy.paymybuddy.model.Role;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +17,7 @@ import java.util.Optional;
 
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -28,14 +31,14 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Iterable<User> findUserByEmail(String email) {
+    public Iterable<User> findByUserEmail(String email) {
     return userRepository.findByEmail(email);
     }
 
     public User addFriend(String email){
         User user = new User();
         List<User> friendsList = user.getUserFriends();;
-        Iterable<User> userFriend = findUserByEmail(email);
+        Iterable<User> userFriend = findByUserEmail(email);
         userFriend.forEach(friendsList::add);
         return userRepository.save(user);
     }
@@ -55,5 +58,8 @@ public class UserService {
     }
 
 
-
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return (UserDetails) userRepository.findByEmail(s);
+    }
 }
