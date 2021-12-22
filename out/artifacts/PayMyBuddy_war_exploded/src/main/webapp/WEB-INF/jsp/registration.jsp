@@ -19,7 +19,7 @@
             <p><input type="text" placeholder="Lastname" id="lastname" name="lastname"></p>
             <p><input type="email" style="background-image: url(/email.png);background-position: left; background-repeat: no-repeat" placeholder="Email" id="email" name="email"></p>
             <p><input type="password" style="background-image: url(/password.png); background-position: left; background-repeat: no-repeat" placeholder="Password" id="password" name="password"></p>
-            <p><button class="login" type="submit">Login</button></p>
+            <p><button class="login" type="submit">Register</button></p>
             </form>
         </section>
     </div>

@@ -56,7 +56,9 @@ public class UserService implements UserDetailsService {
         user.setRole(role);
         return userRepository.save(user);
     }
-
+    public User findByUserMailAndPassword(String mail,String password) {
+        return userRepository.findByEmailAndPassword(mail,password);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

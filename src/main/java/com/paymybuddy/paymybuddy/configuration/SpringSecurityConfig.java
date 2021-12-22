@@ -24,28 +24,28 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService customUserDetailsService;
 
     @Override
-    protected void configure (AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-    }
-    @Override
     public void configure (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/profil/**").authenticated()
-                .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/profil").failureUrl("/login?error=true").permitAll()
                 .and()
                 .httpBasic();
-
-
     }
+
+    @Override
+    protected void configure (AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
