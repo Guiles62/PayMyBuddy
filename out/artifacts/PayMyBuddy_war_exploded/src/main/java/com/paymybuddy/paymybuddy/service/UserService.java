@@ -5,6 +5,9 @@ import com.paymybuddy.paymybuddy.model.Role;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -57,4 +60,15 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return (UserDetails) userRepository.findByEmail(s);
     }
+    public User addFriend (String email) {
+        User userDetails = new User();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            userDetails = (User) auth.getPrincipal();
+            User userFriend = userRepository.findByEmail(email);
+            userDetails.getUserFriends().add(userFriend);
+        }
+        return userRepository.save(userDetails);
+    }
+
 }

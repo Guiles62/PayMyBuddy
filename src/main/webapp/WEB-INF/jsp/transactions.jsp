@@ -36,15 +36,9 @@
         <form method="post" action="/newtransaction">
     <select name="user" id="user">
         <option selected disabled>Select A Connection</option>
-        <option>
-        <c:forEach items="${user}" var="user">
-            <tr class="border border-dark">
-                <td>${user.userFriends}</td>
-                <td>${user.firstname}</td>
-            </tr>
-            </c:forEach>
-
-        </option>
+        <c:catch var="userDetails">
+            <option>${userDetails.userFriends}</option>
+            </c:catch>
     </select>
     <input class="amount" id="amount" min="0" name="amount" value="0" type="number">
     <input type="text" placeholder="Description" id="description" name="description">

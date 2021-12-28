@@ -33,7 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profil/**").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").defaultSuccessUrl("/profil").failureUrl("/login?error=true")
+                .loginPage("/login").defaultSuccessUrl("/transactions").failureUrl("/login?error=true")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()

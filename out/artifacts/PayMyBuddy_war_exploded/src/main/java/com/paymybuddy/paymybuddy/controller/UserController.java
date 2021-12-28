@@ -36,9 +36,9 @@ public class UserController {
     }
 
     @PostMapping(value="/addfriend")
-    /*public User addFriend (@RequestParam("email") String email, Model model){
+    public User addFriend (@RequestParam("email") String email, Model model){
         return userService.addFriend(email);
-    }*/
+    }
 
     @GetMapping( value = "/registration")
     public String registration (Model model) {
@@ -61,7 +61,6 @@ public class UserController {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
             model.addAttribute("userDetails",userDetails);
         }
-
         return "profil";
     }
 
