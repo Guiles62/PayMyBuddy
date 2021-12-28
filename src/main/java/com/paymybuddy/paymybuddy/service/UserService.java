@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -31,17 +30,11 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id);
     }
 
-    public Iterable<User> findByUserEmail(String email) {
+    public User findByUserEmail(String email) {
     return userRepository.findByEmail(email);
     }
 
-    public User addFriend(String email){
-        User user = new User();
-        List<User> friendsList = user.getUserFriends();;
-        Iterable<User> userFriend = findByUserEmail(email);
-        userFriend.forEach(friendsList::add);
-        return userRepository.save(user);
-    }
+
 
     public User saveUser(String firstname,String lastname,String email,String password) {
         Role role = new Role();

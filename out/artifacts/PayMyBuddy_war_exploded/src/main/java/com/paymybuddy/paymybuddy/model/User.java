@@ -90,7 +90,7 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return (Collection<? extends GrantedAuthority>) role;
+        return null;
     }
 
     public String getPassword() {

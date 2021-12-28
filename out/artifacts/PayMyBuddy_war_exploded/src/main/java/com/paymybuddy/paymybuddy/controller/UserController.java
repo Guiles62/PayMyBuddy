@@ -3,6 +3,10 @@ package com.paymybuddy.paymybuddy.controller;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +36,9 @@ public class UserController {
     }
 
     @PostMapping(value="/addfriend")
-    public User addFriend (@RequestParam("email") String email, Model model){
+    /*public User addFriend (@RequestParam("email") String email, Model model){
         return userService.addFriend(email);
-    }
+    }*/
 
     @GetMapping( value = "/registration")
     public String registration (Model model) {
@@ -50,10 +54,12 @@ public class UserController {
         return userService.saveUser(firstname,lastname, email, password);
     }
 
-    @GetMapping(value = "/user")
+    @GetMapping(value = "/profil")
     public String findUsers(Model model) {
-        Iterable<User> userList = userService.getUsers();
-        model.addAttribute("users", userList);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        }
         return "profil";
     }
 
@@ -61,6 +67,4 @@ public class UserController {
     public String login (Model model) {
         return "login";
     }
-
-
 }
