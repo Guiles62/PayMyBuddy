@@ -61,11 +61,4 @@ public class UserController {
     public String login (Model model) {
         return "login";
     }
-
-    @PostMapping(value="/newlogin")
-    public User getUserLogin(@RequestParam("email") String email,
-                             @RequestParam("password") String password,
-                             Model model){
-        return userService.findByUserMailAndPassword(email,password);
-    }
 }
