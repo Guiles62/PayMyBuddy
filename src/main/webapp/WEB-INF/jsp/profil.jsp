@@ -31,11 +31,11 @@
             </tr>
     </thead>
     <tbody>
-    <c:forEach items="${users}" var="users">
+    <c:catch var="userDetails">
         <tr>
-            <td>${users.firstname}</td>
+            <td>${userDetails.firstname}</td>
         </tr>
-    </c:forEach>
+    </c:catch>
     </tbody>
 </table>
 </br>
@@ -46,11 +46,11 @@
         </tr>
     </thead>
     <tbody>
-    <c:forEach items="${users}" var="users">
+    <c:catch var="userDetails">
         <tr>
-            <td>${users.lastname}</td>
+            <td>${userDetails.lastname}</td>
         </tr>
-    </c:forEach>
+    </c:catch>
     </tbody>
 </table>
 </br>
@@ -61,28 +61,14 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${users}" var="users">
+    <c:catch var="userDetails">
         <tr>
-            <td>${users.email}</td>
+            <td>${userDetails.email}</td>
         </tr>
-    </c:forEach>
+    </c:catch>
     </tbody>
 </table>
 </br>
-<table id="table-pass">
-    <thead>
-    <tr class="text-white">
-        <th>Password : </th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${users}" var="users">
-        <tr>
-            <td>${users.password}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
 </div>
 </body>
 </html>

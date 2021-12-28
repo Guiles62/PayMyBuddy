@@ -55,11 +55,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/profil")
-    public String findUsers(Model model) {
+    public String findUser(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            model.addAttribute("userDetails",userDetails);
         }
+
         return "profil";
     }
 
