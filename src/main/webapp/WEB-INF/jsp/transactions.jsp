@@ -18,7 +18,7 @@
                 <a href="/transfert">Transfert</a>
                 <a href="/profil">Profile</a>
                 <a href="/contact">Contact</a>
-                <a href="/logoff">Log off</a></br>
+                <a href="<c:url value="/logout" />">Logout</a></br>
         </div>
     </section>
     <p id="pages">Home / Transfert</p>
@@ -37,13 +37,12 @@
     <select name="user" id="user">
         <option selected disabled>Select A Connection</option>
         <c:catch var="userDetails">
-            <option>${userDetails.userFriends}</option>
+                <option>${userDetails.userFriends}</option>
             </c:catch>
     </select>
     <input class="amount" id="amount" min="0" name="amount" value="0" type="number">
     <input type="text" placeholder="Description" id="description" name="description">
     <button class="pay" type="submit" style="float: right">Pay</button>
-
         </form>
     </section>
     </tbody>
