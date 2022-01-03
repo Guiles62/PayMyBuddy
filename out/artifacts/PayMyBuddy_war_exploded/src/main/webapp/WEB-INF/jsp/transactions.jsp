@@ -34,11 +34,11 @@
     <tbody>
     <section id="pay">
         <form method="post" action="/newtransaction">
-    <select name="user" id="user">
+    <select name="userfriends" id="userfriends">
         <option selected disabled>Select A Connection</option>
-        <c:catch var="userDetails">
-                <option>${userDetails.userFriends}</option>
-            </c:catch>
+        <c:forEach var="userfriends" items="${userfriends}">
+                <option value=${userfriends}>${userfriends.firstname}</option>
+            </c:forEach>
     </select>
     <input class="amount" id="amount" min="0" name="amount" value="0" type="number">
     <input type="text" placeholder="Description" id="description" name="description">

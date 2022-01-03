@@ -45,7 +45,6 @@ public class UserService implements UserDetailsService {
         PmbAccount pmbAccount = new PmbAccount();
         role.setRoleId(2);
         pmbAccount.setBalance(1000);
-        pmbAccount.setAccountNumber(pmbAccount.getPmbAccountId());
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
         User user= new User();

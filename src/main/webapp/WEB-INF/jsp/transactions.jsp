@@ -34,7 +34,7 @@
     <tbody>
     <section id="pay">
         <form method="post" action="/newtransaction">
-    <select name="user" id="user">
+    <select name="userfriends" id="userfriends">
         <option selected disabled>Select A Connection</option>
         <c:forEach var="userfriends" items="${userfriends}">
                 <option value=${userfriends}>${userfriends.firstname}</option>
