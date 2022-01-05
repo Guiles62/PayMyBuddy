@@ -35,9 +35,19 @@ public class UserController {
     return "newfriend";
     }
 
+    @GetMapping(value ="/deleteafriend")
+    public String deleteUserByMail(Model model) {
+        return "deletefriend";
+    }
+
     @PostMapping(value="/addfriend")
     public User addFriend (@RequestParam("email") String email, Model model){
         return userService.addFriend(email);
+    }
+
+    @PostMapping(value = "/deletefriend")
+    public User deleteFriend ( @RequestParam("email") String email, Model model) {
+        return userService.deleteFriend(email);
     }
 
     @GetMapping( value = "/registration")

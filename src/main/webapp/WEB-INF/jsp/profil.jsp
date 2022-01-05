@@ -13,7 +13,7 @@
         <p><em>Pay My Buddy</em></p>
         <div id="liens" style="float: right">
             <a href="/login.jsp">Home</a>
-            <a href="/transfert">Transfert</a>
+            <a href="/transactions">Transfert</a>
             <a href="/profile">Profile</a>
             <a href="/contact">Contact</a>
             <a href="/logoff">Log off</a></br>

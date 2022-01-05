@@ -69,4 +69,15 @@ public class UserService implements UserDetailsService {
         return userRepository.save(userDetails);
     }
 
+    public User deleteFriend (String email) {
+        User userDetails = new User();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            userDetails = (User) auth.getPrincipal();
+            User userFriend = userRepository.findByEmail(email);
+            userDetails.getUserFriends().remove(userFriend);
+        }
+        return userRepository.save(userDetails);
+    }
+
 }

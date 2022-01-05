@@ -40,12 +40,6 @@ public class User implements Serializable, UserDetails {
             referencedColumnName = "role_id")
     private Role role;
 
-    @OneToOne(mappedBy = "userTransmitter")
-    private Transaction transaction;
-
-    @OneToOne(mappedBy = "user")
-    private BankTransaction bankTransaction;
-
     @OneToMany(
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -97,22 +91,6 @@ public class User implements Serializable, UserDetails {
 
     public void setBalance(int balance) {
         this.balance = balance;
-    }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
-
-    public BankTransaction getBankTransaction() {
-        return bankTransaction;
-    }
-
-    public void setBankTransaction(BankTransaction bankTransaction) {
-        this.bankTransaction = bankTransaction;
     }
 
     @Override

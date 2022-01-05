@@ -33,7 +33,7 @@ public class TransactionController {
     }
 
     @PostMapping(value = "/newtransaction")
-    public Transaction addTransaction (@RequestParam("userfriends") User user,
+    public Transaction saveTransaction (@RequestParam("userfriends") User user,
                                        @RequestParam("description") String description,
                                        @RequestParam("amount") int amount,
                                        Model model) {

@@ -15,7 +15,7 @@
                 <p><em>Pay My Buddy</em></p>
         <div id="liens" style="float: right">
                 <a href="/login">Home</a>
-                <a href="/transfert">Transfert</a>
+                <a href="/transactions">Transfert</a>
                 <a href="/profil">Profile</a>
                 <a href="/contact">Contact</a>
                 <a href="<c:url value="/logout" />">Logout</a></br>
@@ -33,7 +33,7 @@
     </thead>
     <tbody>
     <section id="pay">
-        <form method="post" action="/newtransaction">
+        <form action="/newtransaction" method="post">
     <select name="userfriends" id="userfriends">
         <option selected disabled>Select A Connection</option>
         <c:forEach var="userfriends" items="${userfriends}">
@@ -43,6 +43,11 @@
     <input class="amount" id="amount" min="0" name="amount" value="0" type="number">
     <input type="text" placeholder="Description" id="description" name="description">
     <button class="pay" type="submit" style="float: right">Pay</button>
+        </form>
+    </section>
+    <section id="delete">
+        <form action="/deleteafriend" method="get">
+            <button  class="connection" type="submit" style="float: right" > Delete Connection</button>
         </form>
     </section>
     </tbody>
