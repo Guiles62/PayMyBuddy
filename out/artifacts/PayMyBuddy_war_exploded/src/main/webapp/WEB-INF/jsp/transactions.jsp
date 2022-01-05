@@ -37,7 +37,7 @@
     <select name="userfriends" id="userfriends">
         <option selected disabled>Select A Connection</option>
         <c:forEach var="userfriends" items="${userfriends}">
-                <option value=${userfriends}>${userfriends.firstname} ${userfriends.lastname}</option>
+                <option>${userfriends.firstname}</option>
             </c:forEach>
     </select>
     <input class="amount" id="amount" min="0" name="amount" value="0" type="number">
@@ -68,7 +68,7 @@
     <tbody>
     <c:forEach items="${transaction}" var="transaction">
         <tr>
-            <td>${transaction.cost}</td>
+            <td>${transaction.userRecipient.firstname}</td>
             <td>${transaction.description}</td>
             <td>${transaction.amount}</td>
         </tr>

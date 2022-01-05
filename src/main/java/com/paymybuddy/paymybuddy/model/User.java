@@ -33,7 +33,7 @@ public class User implements Serializable, UserDetails {
     private String password;
 
     @Column ( name = "balance")
-    private int balance;
+    private float balance;
 
     @OneToOne()
     @JoinColumn ( name = "role_id",
@@ -85,11 +85,11 @@ public class User implements Serializable, UserDetails {
         this.email = email;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 

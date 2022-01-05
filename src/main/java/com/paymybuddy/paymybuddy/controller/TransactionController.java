@@ -28,16 +28,18 @@ public class TransactionController {
             User userDetails = (User) auth.getPrincipal();
             List<User> userFriends = userDetails.getUserFriends();
             model.addAttribute("userfriends",userFriends);
+            List<Transaction> transactionList = transactionService.findByUserTransmitter(userDetails);
+            model.addAttribute("transaction",transactionList);
         }
         return "transactions";
     }
 
     @PostMapping(value = "/newtransaction")
-    public Transaction saveTransaction (@RequestParam("userfriends") User user,
+    public Transaction saveTransaction (@RequestParam("userfriends") String firstname,
                                        @RequestParam("description") String description,
                                        @RequestParam("amount") int amount,
                                        Model model) {
-        return transactionService.saveTransaction(user,description,amount);
+        return transactionService.saveTransaction(firstname,description,amount);
     }
 
 }

@@ -38,10 +38,18 @@ a {
 #send {
     margin-top: 50px;
     margin-left: 250px;
-    margin-right: 200px;
+    margin-right: 205px;
     display: flex;
     justify-content: space-around;
 }
+#delete {
+    margin-top: 50px;
+    margin-left: 250px;
+    margin-right: 170px;
+    display: flex;
+    justify-content: space-around;
+}
+
 #pay {
     background-color: silver;
     display: flex;
@@ -73,6 +81,10 @@ a {
     margin-right: 540px;
 }
 th {
+    width: 870px;
+    padding-left: 100px;
+}
+td {
     width: 870px;
     padding-left: 100px;
 }

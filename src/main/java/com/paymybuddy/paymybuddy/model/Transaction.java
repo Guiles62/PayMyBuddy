@@ -24,10 +24,10 @@ public class Transaction {
     private String description;
 
     @Column ( name = "amount")
-    private int amount;
+    private float amount;
 
     @Column ( name = "cost")
-    private int cost;
+    private float cost;
 
     @OneToOne ()
     @JoinColumn ( name = "user_transmitter_id", referencedColumnName = "user_id")
@@ -62,19 +62,19 @@ public class Transaction {
         this.description = description;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 
-    public int getCost() {
+    public float getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
 

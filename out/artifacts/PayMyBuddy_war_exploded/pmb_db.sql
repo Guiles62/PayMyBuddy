@@ -12,8 +12,8 @@ CREATE TABLE user (
                 lastname VARCHAR(100) NOT NULL,
                 firstname VARCHAR(100) NOT NULL,
                 email VARCHAR(100) NOT NULL,
-                balance INT NOT NULL,
                 password VARCHAR(100) NOT NULL,
+                balance DECIMAL(6,2) NOT NULL,
                 PRIMARY KEY (user_id)
 );
 
@@ -30,7 +30,6 @@ CREATE TABLE bank_transaction (
 
 CREATE TABLE transaction (
                 transaction_id INT AUTO_INCREMENT NOT NULL,
-                transaction_number INT NOT NULL,
                 date_transaction DATETIME NOT NULL,
                 description VARCHAR(100) NOT NULL,
                 amount DECIMAL(6,2) NOT NULL,
