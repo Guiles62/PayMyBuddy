@@ -17,9 +17,6 @@ public class Transaction {
     @Column ( name = "transaction_id")
     private int transactionId;
 
-    @Column ( name = "transaction_number")
-    private int transactionNumber;
-
     @Column ( name = "date_transaction")
     private LocalDateTime dateTransaction;
 
@@ -32,14 +29,13 @@ public class Transaction {
     @Column ( name = "cost")
     private int cost;
 
-    @ManyToOne(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinColumn ( name = "pmb_account_id")
-    private PmbAccount pmbAccount;
+    @OneToOne ()
+    @JoinColumn ( name = "user_transmitter_id", referencedColumnName = "user_id")
+    private User userTransmitter;
+
+    @OneToOne ()
+    @JoinColumn ( name = "user_recipient_id", referencedColumnName = "user_id")
+    private User userRecipient;
 
 
     public int getTransactionId() {
@@ -48,14 +44,6 @@ public class Transaction {
 
     public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public int getTransactionNumber() {
-        return transactionNumber;
-    }
-
-    public void setTransactionNumber(int transactionNumber) {
-        this.transactionNumber = transactionNumber;
     }
 
     public LocalDateTime getDateTransaction() {
@@ -90,11 +78,19 @@ public class Transaction {
         this.cost = cost;
     }
 
-    public PmbAccount getPmbAccount() {
-        return pmbAccount;
+    public User getUserTransmitter() {
+        return userTransmitter;
     }
 
-    public void setPmbAccount(PmbAccount pmbAccount) {
-        this.pmbAccount = pmbAccount;
+    public void setUserTransmitter(User userTransmitter) {
+        this.userTransmitter = userTransmitter;
+    }
+
+    public User getUserRecipient() {
+        return userRecipient;
+    }
+
+    public void setUserRecipient(User userRecipient) {
+        this.userRecipient = userRecipient;
     }
 }

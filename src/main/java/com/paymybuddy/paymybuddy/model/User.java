@@ -32,16 +32,19 @@ public class User implements Serializable, UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Column ( name = "balance")
+    private int balance;
+
     @OneToOne()
     @JoinColumn ( name = "role_id",
             referencedColumnName = "role_id")
     private Role role;
 
-    @OneToOne(mappedBy = "user")
-    private BankAccount bankAccount;
+    @OneToOne(mappedBy = "userTransmitter")
+    private Transaction transaction;
 
     @OneToOne(mappedBy = "user")
-    private PmbAccount pmbAccount;
+    private BankTransaction bankTransaction;
 
     @OneToMany(
             fetch = FetchType.EAGER,
@@ -88,6 +91,30 @@ public class User implements Serializable, UserDetails {
         this.email = email;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public BankTransaction getBankTransaction() {
+        return bankTransaction;
+    }
+
+    public void setBankTransaction(BankTransaction bankTransaction) {
+        this.bankTransaction = bankTransaction;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -132,22 +159,6 @@ public class User implements Serializable, UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public BankAccount getBankAccount() {
-        return bankAccount;
-    }
-
-    public void setBankAccount(BankAccount bankAccount) {
-        this.bankAccount = bankAccount;
-    }
-
-    public PmbAccount getPmbAccount() {
-        return pmbAccount;
-    }
-
-    public void setPmbAccount(PmbAccount pmbAccount) {
-        this.pmbAccount = pmbAccount;
     }
 
     public List<User> getUserFriends() {

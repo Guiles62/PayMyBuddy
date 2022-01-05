@@ -1,7 +1,6 @@
 package com.paymybuddy.paymybuddy.service;
 
 
-import com.paymybuddy.paymybuddy.model.PmbAccount;
 import com.paymybuddy.paymybuddy.model.Role;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
@@ -42,9 +41,7 @@ public class UserService implements UserDetailsService {
 
     public User saveUser(String firstname,String lastname,String email,String password) {
         Role role = new Role();
-        PmbAccount pmbAccount = new PmbAccount();
         role.setRoleId(2);
-        pmbAccount.setBalance(1000);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
         User user= new User();
@@ -53,7 +50,7 @@ public class UserService implements UserDetailsService {
         user.setLastname(lastname);
         user.setPassword(hashedPassword);
         user.setRole(role);
-        user.setPmbAccount(pmbAccount);
+        user.setBalance(1000);
         return userRepository.save(user);
     }
 

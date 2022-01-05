@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 @Entity
 @DynamicUpdate
-@Table ( name = "transaction_account")
-public class AccountTransaction {
+@Table ( name = "bank_transaction")
+public class BankTransaction {
 
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
-    @Column ( name = "transaction_account_id")
+    @Column ( name = "bank_transaction_id")
     private int transactionAccountId;
 
     @Column ( name = "date_transaction_account")
@@ -21,15 +21,12 @@ public class AccountTransaction {
     @Column ( name = "amount")
     private int amount;
 
-    @ManyToOne(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinColumn ( name = "bank_account_id")
-    private BankAccount bankAccount;
+    @Column ( name = "rib")
+    private String rib;
 
+    @OneToOne ( cascade = CascadeType.ALL)
+    @JoinColumn ( name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
     public int getTransactionAccountId() {
         return transactionAccountId;
@@ -55,11 +52,19 @@ public class AccountTransaction {
         this.amount = amount;
     }
 
-    public BankAccount getBankAccount() {
-        return bankAccount;
+    public String getRib() {
+        return rib;
     }
 
-    public void setBankAccount(BankAccount bankAccount) {
-        this.bankAccount = bankAccount;
+    public void setRib(String rib) {
+        this.rib = rib;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

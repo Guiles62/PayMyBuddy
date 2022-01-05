@@ -21,21 +21,22 @@ public class TransactionService {
     private UserRepository userRepository;
 
     public List<Transaction> findTransactionsByUserEmail(String email) {
-        return transactionRepository.findTransactionsByPmbAccountUserEmail(email);
+        return transactionRepository.findTransactionsByUserTransmitterEmail(email);
     }
 
     public Transaction saveTransaction(User user,String description,int amount) {
-        User userDetails = new User();
         Transaction transaction = new Transaction();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
-            userDetails = (User) auth.getPrincipal();
+            User userDetails = (User) auth.getPrincipal();
+            transaction.setUserTransmitter(userDetails);
+            transaction.setUserRecipient(user);
             transaction.setDescription(description);
             transaction.setDateTransaction(LocalDateTime.now());
             transaction.setAmount(amount);
             transaction.setCost((int) (amount*0.05));
-            transaction.setPmbAccount(userDetails.getPmbAccount());
-            user.getPmbAccount().setBalance((int) (user.getPmbAccount().getBalance()+ amount/1.05));
+            transaction.getUserTransmitter().setBalance(userDetails.getBalance() - amount);
+            transaction.getUserRecipient().setBalance((int) (user.getBalance() + amount/1.05));
         }
         return transactionRepository.save(transaction);
     }
