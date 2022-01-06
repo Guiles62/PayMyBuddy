@@ -28,14 +28,15 @@ public class TransactionService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             User userDetails = (User) auth.getPrincipal();
+            User userTransmitter = userRepository.findByFirstname(userDetails.getFirstname());
             User userRecipient = userRepository.findByFirstname(firstname);
-            transaction.setUserTransmitter(userDetails);
+            transaction.setUserTransmitter(userTransmitter);
             transaction.setUserRecipient(userRecipient);
             transaction.setDescription(description);
             transaction.setDateTransaction(LocalDateTime.now());
             transaction.setAmount(amount);
             transaction.setCost(cost);
-            transaction.getUserTransmitter().setBalance(userDetails.getBalance() - amount);
+            transaction.getUserTransmitter().setBalance(userTransmitter.getBalance() - amount);
             transaction.getUserRecipient().setBalance(userRecipient.getBalance() + (amount - cost));
         }
         return transactionRepository.save(transaction);
