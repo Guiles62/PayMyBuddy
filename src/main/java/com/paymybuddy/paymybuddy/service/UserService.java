@@ -59,14 +59,16 @@ public class UserService implements UserDetailsService {
         return (UserDetails) userRepository.findByEmail(s);
     }
     public User addFriend (String email) {
-        User userDetails = new User();
+        User user = new User();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
-            userDetails = (User) auth.getPrincipal();
+          UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String emailUser = userDetails.getUsername();
+            user = userRepository.findByEmail(emailUser);
             User userFriend = userRepository.findByEmail(email);
-            userDetails.getUserFriends().add(userFriend);
+            user.getUserFriends().add(userFriend);
         }
-        return userRepository.save(userDetails);
+        return userRepository.save(user);
     }
 
     public User deleteFriend (String email) {

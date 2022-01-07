@@ -62,7 +62,9 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
-            model.addAttribute("userDetails",userDetails);
+        String email = userDetails.getUsername();
+        User user = userService.findByUserEmail(email);
+            model.addAttribute("userDetails",user);
         }
         return "profil";
     }
