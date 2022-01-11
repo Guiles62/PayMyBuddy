@@ -12,7 +12,7 @@
     <section id="entete">
         <p><em>Pay My Buddy</em></p>
         <div id="liens" style="float: right">
-            <a href="/login.jsp">Home</a>
+            <a href="/login">Home</a>
             <a href="/transactions">Transfert</a>
             <a href="/profile">Profile</a>
             <a href="/contact">Contact</a>

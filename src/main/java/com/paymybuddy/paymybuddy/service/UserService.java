@@ -4,10 +4,6 @@ package com.paymybuddy.paymybuddy.service;
 import com.paymybuddy.paymybuddy.model.Role;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,22 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
+
     private UserRepository userRepository;
 
-
-    public Iterable<User> getUsers() {
-        return userRepository.findAll();
-    }
-
-    public Optional<User> getUserById (Integer id) {
-        return userRepository.findById(id);
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public User findByUserEmail(String email) {
@@ -58,29 +47,15 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return (UserDetails) userRepository.findByEmail(s);
     }
-    public User addFriend (String email) {
-        User user = new User();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-          UserDetails userDetails = (UserDetails) auth.getPrincipal();
-            String emailUser = userDetails.getUsername();
-            user = userRepository.findByEmail(emailUser);
+    public User addFriend (User user, String email) {
             User userFriend = userRepository.findByEmail(email);
             user.getUserFriends().add(userFriend);
-        }
         return userRepository.save(user);
     }
 
-    public User deleteFriend (String email) {
-        User user = new User();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-           UserDetails userDetails = (UserDetails) auth.getPrincipal();
-            String emailUser = userDetails.getUsername();
-            user = userRepository.findByEmail(emailUser);
+    public User deleteFriend (User user,String email) {
             User userFriend = userRepository.findByEmail(email);
             user.getUserFriends().remove(userFriend);
-        }
         return userRepository.save(user);
     }
 

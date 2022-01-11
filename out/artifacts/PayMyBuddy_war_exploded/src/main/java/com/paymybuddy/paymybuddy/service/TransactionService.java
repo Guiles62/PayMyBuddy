@@ -4,10 +4,6 @@ import com.paymybuddy.paymybuddy.model.Transaction;
 import com.paymybuddy.paymybuddy.model.User;
 import com.paymybuddy.paymybuddy.repository.TransactionRepository;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,19 +12,20 @@ import java.util.List;
 @Service
 public class TransactionService {
 
-    @Autowired
+
     private TransactionRepository transactionRepository;
-    @Autowired
     private UserRepository userRepository;
 
+    public TransactionService(TransactionRepository transactionRepository, UserRepository userRepository) {
+        this.transactionRepository = transactionRepository;
+        this.userRepository = userRepository;
+    }
 
-    public Transaction saveTransaction(String firstname, String description, int amount) {
+    public Transaction saveTransaction(User user, String firstname, String description, int amount) {
         Transaction transaction = new Transaction();
+        String email = user.getEmail();
         float cost = (float) (amount * 0.05);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            User userDetails = (User) auth.getPrincipal();
-            User userTransmitter = userRepository.findByFirstname(userDetails.getFirstname());
+            User userTransmitter = userRepository.findByEmail(email);
             User userRecipient = userRepository.findByFirstname(firstname);
             transaction.setUserTransmitter(userTransmitter);
             transaction.setUserRecipient(userRecipient);
@@ -38,15 +35,10 @@ public class TransactionService {
             transaction.setCost(cost);
             transaction.getUserTransmitter().setBalance(userTransmitter.getBalance() - amount);
             transaction.getUserRecipient().setBalance(userRecipient.getBalance() + (amount - cost));
-        }
         return transactionRepository.save(transaction);
     }
 
     public List<Transaction> findByUserTransmitter(User user) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            user = (User) auth.getPrincipal();
-        }
         return transactionRepository.findByUserTransmitter(user);
     }
 }

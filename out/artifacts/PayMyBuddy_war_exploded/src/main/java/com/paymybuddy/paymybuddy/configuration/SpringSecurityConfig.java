@@ -31,6 +31,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/profil/**").authenticated()
+                .antMatchers("/transactions/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").defaultSuccessUrl("/transactions").failureUrl("/login?error=true")

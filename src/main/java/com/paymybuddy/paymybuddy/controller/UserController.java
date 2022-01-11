@@ -5,6 +5,7 @@ import com.paymybuddy.paymybuddy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -34,13 +35,15 @@ public class UserController {
     }
 
     @PostMapping(value="/addfriend")
-    public User addFriend (@RequestParam("email") String email, Model model){
-        return userService.addFriend(email);
+    public String addFriend (@AuthenticationPrincipal User user, @RequestParam("email") String email, Model model){
+        userService.addFriend(user, email);
+        return "redirect:/transactions";
     }
 
     @PostMapping(value = "/deletefriend")
-    public User deleteFriend ( @RequestParam("email") String email, Model model) {
-        return userService.deleteFriend(email);
+    public String deleteFriend (@AuthenticationPrincipal User user, @RequestParam("email") String email, Model model) {
+        userService.deleteFriend(user,email);
+        return "redirect:/transactions";
     }
 
     @GetMapping( value = "/registration")
@@ -49,12 +52,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/newuser")
-    public User saveUser ( @RequestParam("firstname") String firstname,
+    public String saveUser ( @RequestParam("firstname") String firstname,
                            @RequestParam("lastname") String lastname,
                            @RequestParam("email") String email,
                            @RequestParam("password") String password,
                            Model model) {
-        return userService.saveUser(firstname,lastname, email, password);
+        userService.saveUser(firstname,lastname, email, password);
+        return "redirect:/transactions";
     }
 
     @GetMapping(value = "/profil")
