@@ -3,7 +3,7 @@ package com.paymybuddy.paymybuddy.model;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @DynamicUpdate
@@ -16,7 +16,7 @@ public class BankTransaction {
     private int transactionAccountId;
 
     @Column ( name = "date_transaction_account")
-    private LocalDate transactionAccountDate;
+    private LocalDateTime transactionAccountDate;
 
     @Column ( name = "amount")
     private int amount;
@@ -36,11 +36,11 @@ public class BankTransaction {
         this.transactionAccountId = transactionAccountId;
     }
 
-    public LocalDate getTransactionAccountDate() {
+    public LocalDateTime getTransactionAccountDate() {
         return transactionAccountDate;
     }
 
-    public void setTransactionAccountDate(LocalDate transactionAccountDate) {
+    public void setTransactionAccountDate(LocalDateTime transactionAccountDate) {
         this.transactionAccountDate = transactionAccountDate;
     }
 

@@ -42,13 +42,15 @@ a {
     display: flex;
     justify-content: space-around;
 }
-#delete {
+#bank\&delete {
     margin-top: 50px;
     margin-left: 250px;
     margin-right: 170px;
+    padding-right: 230px;
     display: flex;
     justify-content: space-around;
 }
+
 
 #pay {
     background-color: silver;

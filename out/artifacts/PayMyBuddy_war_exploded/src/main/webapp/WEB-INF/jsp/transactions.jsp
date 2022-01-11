@@ -45,7 +45,10 @@
     <button class="pay" type="submit" style="float: right">Pay</button>
         </form>
     </section>
-    <section id="delete">
+    <section id="bank&delete">
+        <form action="/banktransaction" method="get">
+            <button  class="connection" type="submit" style="float: right" > Bank Transactions</button>
+        </form>
         <form action="/deleteafriend" method="get">
             <button  class="connection" type="submit" style="float: right" > Delete Connection</button>
         </form>
