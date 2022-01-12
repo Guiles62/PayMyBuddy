@@ -77,4 +77,5 @@ public class UserController {
     public String login (Model model) {
         return "login";
     }
+
 }
