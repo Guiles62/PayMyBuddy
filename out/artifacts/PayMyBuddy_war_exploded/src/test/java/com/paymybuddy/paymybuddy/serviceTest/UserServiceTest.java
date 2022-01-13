@@ -27,7 +27,7 @@ public class UserServiceTest {
 
     @BeforeEach
     void setup() {
-    userService = new UserService(userRepository);
+        userService = new UserService(userRepository);
     }
 
     @Test
@@ -42,13 +42,9 @@ public class UserServiceTest {
     @Test
     public void saveUserTest() {
         User user = new User();
-        user.setEmail("est@gmail.com");
         String email = user.getEmail();
-        user.setLastname("est");
         String lastname = user.getLastname();
-        user.setPassword("0000");
         String password = user.getPassword();
-        user.setFirstname("estelle");
         String firstname = user.getFirstname();
         when(userRepository.save(user)).thenReturn(user);
         userService.saveUser(firstname,lastname,email,password);
