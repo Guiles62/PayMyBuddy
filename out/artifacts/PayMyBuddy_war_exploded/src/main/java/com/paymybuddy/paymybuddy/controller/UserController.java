@@ -20,9 +20,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
-
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/newfriend")
     public String getUserByEmail(Model model) {

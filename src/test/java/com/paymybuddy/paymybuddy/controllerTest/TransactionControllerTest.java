@@ -40,12 +40,13 @@ public class TransactionControllerTest {
 
     @BeforeEach
     public void setup() {
-
+        transactionController = new TransactionController(transactionService);
         user = (User) userDetailsService.loadUserByUsername("gui@gmail.com");
     }
 
 
     @Test
+    @WithMockUser(username="gui@gmail.com")
     public void getUserTransactionsTest() throws Exception {
         mockMvc.perform(get("/transactions")).andExpect(status().isOk());
     }
