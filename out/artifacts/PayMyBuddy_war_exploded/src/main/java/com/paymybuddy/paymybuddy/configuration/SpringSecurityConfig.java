@@ -42,7 +42,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .oauth2Login()
-                .loginPage("/login").defaultSuccessUrl("/transactions").failureUrl("/login?error=true");
+                .loginPage("/login").defaultSuccessUrl("/oauth/authorize").failureUrl("/login?error=true");
 
 
     }

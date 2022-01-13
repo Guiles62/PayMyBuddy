@@ -31,7 +31,7 @@ public class UserControllerTest {
     @Mock
     UserService userService;
 
-    @Mock
+
     UserController userController;
 
     @Autowired
@@ -42,8 +42,8 @@ public class UserControllerTest {
 
     @BeforeEach
     public void setup() {
-
-         user = (User) userDetailsService.loadUserByUsername("gui@gmail.com");
+        userController = new UserController(userService);
+        user = (User) userDetailsService.loadUserByUsername("gui@gmail.com");
     }
 
     @Test
@@ -57,7 +57,6 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser()
     public void addFriendTest() throws Exception {
         userController.addFriend(user,"est@gmail.com",model);
         verify(userService,times(1)).addFriend(user,"est@gmail.com");
@@ -70,7 +69,8 @@ public class UserControllerTest {
     }
     @Test
     public void saveUserTest() throws Exception {
-
+        userController.saveUser("gui","gui","gui@gmail.com","1234",model);
+        verify(userService,times(1)).saveUser("gui","gui","gui@gmail.com","1234");
     }
 
     @Test
