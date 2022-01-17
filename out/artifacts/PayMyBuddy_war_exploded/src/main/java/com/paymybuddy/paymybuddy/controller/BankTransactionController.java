@@ -16,6 +16,9 @@ public class BankTransactionController {
     @Autowired
     private BankTransactionService bankTransactionService;
 
+    public BankTransactionController(BankTransactionService bankTransactionService) {
+        this.bankTransactionService = bankTransactionService;
+    }
 
     @GetMapping(value="banktransaction")
     public String getBankTransactions(Model model) {
