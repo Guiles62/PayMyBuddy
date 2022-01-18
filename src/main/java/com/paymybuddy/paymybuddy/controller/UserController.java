@@ -73,9 +73,10 @@ public class UserController {
         return "profil";
     }
 
-    @GetMapping(value="/login")
+    @GetMapping(value = "/login")
     public String login (Model model) {
         return "login";
     }
+
 
 }
