@@ -61,7 +61,7 @@ public class TransactionServiceTest {
         when(userRepository.findByFirstname("gui")).thenReturn(user2);
         when(transactionRepository.save(transaction)).thenReturn(transaction);
         transactionService.saveTransaction(user,"gui","abcd",100);
-        verify(transactionRepository,times(1)).save(transaction);
+        verify(transactionRepository,times(1)).save(any(Transaction.class));
     }
 
     @Test

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.mockito.Mockito.*;
 
@@ -19,7 +18,6 @@ public class BankTransactionServiceTest {
 
     private static BankTransactionService bankTransactionService;
     private User user;
-    private BankTransaction bankTransaction;
 
 
     @Mock
@@ -39,27 +37,22 @@ public class BankTransactionServiceTest {
         user.setPassword("1234");
         user.setBalance(1000);
         when(userRepository.findByEmail("gui@gmail.com")).thenReturn(user);
-        bankTransaction = new BankTransaction();
-        bankTransaction.setUser(user);
-        bankTransaction.setRib("1234");
-        bankTransaction.setAmount(100);
-        when(bankTransactionRepository.save(bankTransaction)).thenReturn(bankTransaction);
     }
 
     @Test
-    @WithMockUser(username = "gui@gmail.com")
     public void saveBankTransactionTest() {
+        BankTransaction bankTransaction = new BankTransaction();
+        when(bankTransactionRepository.save(bankTransaction)).thenReturn(bankTransaction);
         bankTransactionService.saveBankTransaction(user,"1234",100);
-        verify(bankTransactionRepository,times(1)).save(bankTransaction);
+        verify(bankTransactionRepository,times(1)).save(any(BankTransaction.class));
     }
 
     @Test
-    @WithMockUser(username = "gui@gmail.com")
     public void savePMBTransactionTest() {
         BankTransaction bankTransaction = new BankTransaction();
         when(bankTransactionRepository.save(bankTransaction)).thenReturn(bankTransaction);
         bankTransactionService.savePMBTransaction(user,"1234",100);
-        verify(bankTransactionRepository,times(1)).save(bankTransaction);
+        verify(bankTransactionRepository,times(1)).save(any(BankTransaction.class));
     }
 
 }

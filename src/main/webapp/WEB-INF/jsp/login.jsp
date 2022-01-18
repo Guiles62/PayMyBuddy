@@ -21,8 +21,6 @@
                 <label for="remember">Remember me</label></p>
             <p><button class="login" type="submit">Login</button></p>
             </form>
-            <a href="http://localhost:8080/login/oauth2/code/github"/>
-            <img src="/github.png">
         </section>
     </div>
 </div>

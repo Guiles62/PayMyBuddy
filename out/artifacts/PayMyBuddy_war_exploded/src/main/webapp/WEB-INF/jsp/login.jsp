@@ -21,8 +21,6 @@
                 <label for="remember">Remember me</label></p>
             <p><button class="login" type="submit">Login</button></p>
             </form>
-            <a href="https://github.com/login/oauth/authorize?response_type=code&client_id=a0999fec2d3f5018b257&scope=read:user&state=mRlvHMyh5-DbYGREpWYsK5RE5I9ZNWli1bV8TCNgpiA%3D&redirect_uri=http://localhost:8080/login/oauth2/code/github"/>
-            <img src="/github.png">
         </section>
     </div>
 </div>

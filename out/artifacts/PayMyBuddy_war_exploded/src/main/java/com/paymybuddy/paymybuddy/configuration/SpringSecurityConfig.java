@@ -28,6 +28,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/github").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/profil/**").authenticated()
@@ -39,10 +40,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and().logout().deleteCookies("JSESSIONID").logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()
-                .httpBasic()
-                .and()
-                .oauth2Login()
-                .loginPage("/login").defaultSuccessUrl("/oauth/authorize").failureUrl("/login?error=true");
+                .httpBasic();
+
+
+
 
 
     }

@@ -39,9 +39,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and().logout().deleteCookies("JSESSIONID").logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()
-                .httpBasic()
-                .and()
-                .oauth2Login();
+                .httpBasic();
+
+
 
 
 
