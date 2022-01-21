@@ -7,15 +7,17 @@ import com.paymybuddy.paymybuddy.repository.BankTransactionRepository;
 import com.paymybuddy.paymybuddy.repository.UserRepository;
 import com.paymybuddy.paymybuddy.service.BankTransactionService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class BankTransactionServiceTest {
 
     private static BankTransactionService bankTransactionService;
     private User user;
-    private BankTransaction bankTransaction;
 
 
     @Mock
@@ -27,25 +29,30 @@ public class BankTransactionServiceTest {
     @BeforeEach
     void setup() {
         bankTransactionService = new BankTransactionService(bankTransactionRepository,userRepository);
-
-    }
-
-  /* @Test
-    public void saveBankTransactionTest() {
-        User user = new User();
-        BankTransaction bankTransaction = new BankTransaction();
-        bankTransactionService.saveBankTransaction(user,"1234",100);
+        user = new User();
+        user.setBalance(1000);
+        user.setEmail("gui@gmail.com");
+        user.setFirstname("gui");
+        user.setLastname("gui");
+        user.setPassword("1234");
+        user.setBalance(1000);
         when(userRepository.findByEmail("gui@gmail.com")).thenReturn(user);
-        verify(bankTransactionRepository,times(1)).save(any(Transaction.class));
     }
 
-   /* @Test
-    @WithMockUser(username = "gui@gmail.com")
+    @Test
+    public void saveBankTransactionTest() {
+        BankTransaction bankTransaction = new BankTransaction();
+        when(bankTransactionRepository.save(bankTransaction)).thenReturn(bankTransaction);
+        bankTransactionService.saveBankTransaction(user,"1234",100);
+        verify(bankTransactionRepository,times(1)).save(any(BankTransaction.class));
+    }
+
+    @Test
     public void savePMBTransactionTest() {
         BankTransaction bankTransaction = new BankTransaction();
         when(bankTransactionRepository.save(bankTransaction)).thenReturn(bankTransaction);
         bankTransactionService.savePMBTransaction(user,"1234",100);
-        verify(bankTransactionRepository,times(1)).save(any(Transaction.class));
-    }*/
+        verify(bankTransactionRepository,times(1)).save(any(BankTransaction.class));
+    }
 
 }

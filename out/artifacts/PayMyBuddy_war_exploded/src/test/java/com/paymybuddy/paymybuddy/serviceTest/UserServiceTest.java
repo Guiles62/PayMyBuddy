@@ -47,8 +47,8 @@ public class UserServiceTest {
         String password = user.getPassword();
         String firstname = user.getFirstname();
         when(userRepository.save(user)).thenReturn(user);
-        userService.saveUser(firstname,lastname,email,password);
-        verify(userRepository,times(1)).save(user);
+        userService.saveUser(firstname,lastname,email,"1234");
+        verify(userRepository,times(1)).save(any(User.class));
     }
 
     @Test

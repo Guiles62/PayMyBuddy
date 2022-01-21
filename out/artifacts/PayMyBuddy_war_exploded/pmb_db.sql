@@ -1,3 +1,4 @@
+CREATE SCHEMA "paymybuddy" ;
 
 CREATE TABLE role (
                 role_id INT AUTO_INCREMENT NOT NULL,
