@@ -27,15 +27,19 @@ public class TransactionService {
         float cost = (float) (amount * 0.05);
             User userTransmitter = userRepository.findByEmail(email);
             User userRecipient = userRepository.findByFirstname(firstname);
-            transaction.setUserTransmitter(userTransmitter);
-            transaction.setUserRecipient(userRecipient);
-            transaction.setDescription(description);
-            transaction.setDateTransaction(LocalDateTime.now());
-            transaction.setAmount(amount);
-            transaction.setCost(cost);
-            transaction.getUserTransmitter().setBalance(userTransmitter.getBalance() - amount);
-            transaction.getUserRecipient().setBalance(userRecipient.getBalance() + (amount - cost));
-        return transactionRepository.save(transaction);
+            if (userTransmitter.getBalance() > amount) {
+                transaction.setUserTransmitter(userTransmitter);
+                transaction.setUserRecipient(userRecipient);
+                transaction.setDescription(description);
+                transaction.setDateTransaction(LocalDateTime.now());
+                transaction.setAmount(amount);
+                transaction.setCost(cost);
+                transaction.getUserTransmitter().setBalance(userTransmitter.getBalance() - amount);
+                transaction.getUserRecipient().setBalance(userRecipient.getBalance() + (amount - cost));
+                return transactionRepository.save(transaction);
+            }else {
+                return null;
+            }
     }
 
     public List<Transaction> findByUserTransmitter(User user) {

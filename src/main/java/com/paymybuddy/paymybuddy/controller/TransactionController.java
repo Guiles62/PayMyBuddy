@@ -51,8 +51,11 @@ public class TransactionController {
                                    @RequestParam("description") String description,
                                    @RequestParam("amount") int amount,
                                    Model model) {
-         transactionService.saveTransaction(user,firstname,description,amount);
-        return "redirect:/transactions";
+        if (transactionService.saveTransaction(user, firstname, description, amount) == null) {
+            model.addAttribute("error", "Your balance is insufficient");
+            return "transactions";
+        } else {
+            return "redirect:transactions";
+        }
     }
-
 }
