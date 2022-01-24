@@ -52,6 +52,16 @@ public class TransactionController {
                                    @RequestParam("amount") int amount,
                                    Model model) {
         if (transactionService.saveTransaction(user, firstname, description, amount) == null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (!(auth instanceof AnonymousAuthenticationToken)) {
+                UserDetails userDetails = (UserDetails) auth.getPrincipal();
+                String email = userDetails.getUsername();
+                User user2 = userService.findByUserEmail(email);
+                List<User> userFriends = user2.getUserFriends();
+                model.addAttribute("userfriends",userFriends);
+                List<Transaction> transactionList = transactionService.findByUserTransmitter(user);
+                model.addAttribute("transaction",transactionList);
+            }
             model.addAttribute("error", "Your balance is insufficient");
             return "transactions";
         } else {
