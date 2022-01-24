@@ -45,6 +45,11 @@
     <button class="pay" type="submit" style="float: right">Pay</button>
         </form>
     </section>
+    <section id="error">
+    <c:if test="${error!=null}">
+        <p style="color: red" ><strong>${error}</strong></p>
+    </c:if>
+    </section>
     <section id="bank&delete">
         <form action="/banktransaction" method="get">
             <button  class="connection" type="submit" style="float: right" > Bank Transactions</button>

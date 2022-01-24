@@ -50,6 +50,14 @@ a {
     display: flex;
     justify-content: space-around;
 }
+#error {
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 170px;
+    padding-right: 180px;
+    display: flex;
+    justify-content: space-around;
+}
 
 
 #pay {
